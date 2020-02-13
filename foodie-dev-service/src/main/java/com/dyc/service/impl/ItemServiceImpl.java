@@ -1,6 +1,7 @@
 package com.dyc.service.impl;
 
 import com.dyc.enums.CommentLevel;
+import com.dyc.enums.YesOrNo;
 import com.dyc.mapper.*;
 import com.dyc.pojo.*;
 import com.dyc.pojo.vo.CommentLevelCountsVO;
@@ -150,5 +151,35 @@ public class ItemServiceImpl implements ItemService {
         List<String> specIdsList = new ArrayList<>();
         Collections.addAll(specIdsList, ids);
         return itemsMapperCustom.queryItemsBySpecIds(specIdsList);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public ItemsSpec queryItemSpecById(String specId) {
+        return itemsSpecMapper.selectByPrimaryKey(specId);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public String queryItemMainImgById(String itemId) {
+        ItemsImg itemsImg = new ItemsImg();
+        itemsImg.setItemId(itemId);
+        itemsImg.setIsMain(YesOrNo.YES.type);
+        ItemsImg result = itemsImgMapper.selectOne(itemsImg);
+        return result != null ? result.getUrl() : "";
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void decreaseItemSpecStock(String specId, int buyCounts) {
+        // synchronized: 不推举使用，集群下无用，性能低下
+        // 锁数据库: 不推举使用，性能低下
+        // 分布式锁 zookeeper redis
+
+        // 目前单体项目中使用乐观锁（sql）
+        int result = itemsMapperCustom.decreaseItemSpecStock(specId, buyCounts);
+        if(result != 1){
+            throw new RuntimeException("订单创建失败，原因：库存不足！");
+        }
     }
 }

@@ -60,4 +60,14 @@ public interface AddressService {
      * @date 2020/2/12
      */
     public void updateUserAddressToBeDefault(String userId, String addressId);
+  
+    /***
+     * 方法描述 根据用户id和地址id，查询具体的用户地址信息
+     * @param userId
+     * @param addressId
+     * @return com.dyc.pojo.UserAddress
+     * @author dengyichao
+     * @date 2020/2/13
+     */
+    public UserAddress queryUserAddress(String userId,String addressId);
 }

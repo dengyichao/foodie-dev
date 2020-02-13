@@ -79,4 +79,32 @@ public interface ItemService {
      * @return
      */
     public List<ShopcartVO> queryItemsBySpecIds(String itemSpecIds);
+
+    /***
+     * 方法描述 根据商品规格id获取规格对象的具体信息
+     * @param specId
+     * @return com.dyc.pojo.ItemsSpec
+     * @author dengyichao
+     * @date 2020/2/13
+     */
+    public ItemsSpec queryItemSpecById(String specId);
+
+    /***
+     * 方法描述 根据商品ID获得商品主图url
+     * @param itemId
+     * @return java.lang.String
+     * @author dengyichao
+     * @date 2020/2/13
+     */
+    public String queryItemMainImgById(String itemId);
+
+    /***
+     * 方法描述 减少库存
+     * @param specId
+     * @param buyCounts
+     * @return void
+     * @author dengyichao
+     * @date 2020/2/13
+     */
+    public void decreaseItemSpecStock(String specId, int buyCounts);
 }
