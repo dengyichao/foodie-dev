@@ -19,6 +19,6 @@ public class HelloController {
         logger.debug("debug: hello~");
         logger.warn("warn: hello~");
         logger.error("error: hello~");
-        return "hello world~";
+        return "hello world~  My name is DYC";
     }
 }
