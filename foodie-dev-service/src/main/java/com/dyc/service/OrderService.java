@@ -39,4 +39,13 @@ public interface OrderService {
      * @date 2020/2/15
      */
     public OrderStatus queryOrderStatusInfo(String orderId);
+
+    /***
+     * 方法描述 关闭超时未关闭订单
+     * @param
+     * @return void
+     * @author dengyichao
+     * @date 2020/2/16
+     */
+    public void closeOrder();
 }
