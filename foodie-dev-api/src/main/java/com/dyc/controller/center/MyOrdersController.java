@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("myorders")
 public class MyOrdersController extends BaseController {
 
-    @Autowired
-    private MyOrdersService myOrdersService;
+//    @Autowired
+//    private MyOrdersService myOrdersService;
 
     @ApiOperation(value = "查询订单列表", notes = "查询订单列表", httpMethod = "POST")
     @PostMapping("query")
@@ -102,25 +102,12 @@ public class MyOrdersController extends BaseController {
             return JSONResult.errorMsg("订单删除失败！");
         }
 
+
         return JSONResult.ok();
     }
 
 
 
 
-   /***
-    * 方法描述 用于验证用户和订单是否有关联关系，避免非法用户调用
-    * @param userId
-    * @param orderId
-    * @return com.dyc.utils.JSONResult
-    * @author dengyichao
-    * @date 2020/2/23
-    */
-    private JSONResult checkUserOrder(String userId, String orderId){
-        Orders order = myOrdersService.queryMyOrder(userId, orderId);
-        if(order == null){
-            return JSONResult.errorMsg("订单不存在！");
-        }
-        return JSONResult.ok();
-    }
+
 }

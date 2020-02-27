@@ -1,5 +1,9 @@
 package com.dyc.controller;
 
+import com.dyc.pojo.Orders;
+import com.dyc.service.center.MyOrdersService;
+import com.dyc.utils.JSONResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.io.File;
@@ -21,4 +25,24 @@ public class BaseController {
 
     // 用户上传头像的位置
     public static final String IMAGE_USER_FACE_LOCATION = "F:"+ File.separator+"code"+File.separator+"foodie-dev"+File.separator+"images"+File.separator+"foodie"+File.separator+"faces";
+
+
+    @Autowired
+    public MyOrdersService myOrdersService;
+
+    /***
+     * 方法描述 用于验证用户和订单是否有关联关系，避免非法用户调用
+     * @param userId
+     * @param orderId
+     * @return com.dyc.utils.JSONResult
+     * @author dengyichao
+     * @date 2020/2/23
+     */
+    public JSONResult checkUserOrder(String userId, String orderId){
+        Orders order = myOrdersService.queryMyOrder(userId, orderId);
+        if(order == null){
+            return JSONResult.errorMsg("订单不存在！");
+        }
+        return JSONResult.ok(order);
+    }
 }
