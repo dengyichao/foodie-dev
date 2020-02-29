@@ -1,6 +1,7 @@
 package com.dyc.service.center;
 
 import com.dyc.pojo.Orders;
+import com.dyc.pojo.vo.OrderStatusCountsVO;
 import com.dyc.utils.PagedGridResult;
 
 public interface MyOrdersService {
@@ -53,4 +54,26 @@ public interface MyOrdersService {
       * @date 2020/2/23
       */
     public boolean deleteOrder(String userId, String orderId);
+
+    /***
+     * 方法描述 查询用户订单数
+     * @param userId
+     * @return void
+     * @author dengyichao
+     * @date 2020/2/29
+     */
+    public OrderStatusCountsVO getOrderStatusCounts(String userId);
+
+    /***
+     * 方法描述 获得分页的订单动向
+     * @param userId
+     * @param page
+     * @param pageSize
+     * @return com.dyc.utils.PagedGridResult
+     * @author dengyichao
+     * @date 2020/2/29
+     */
+    public PagedGridResult getOrdersTrend(String userId,
+                                          Integer page,
+                                          Integer pageSize);
 }
