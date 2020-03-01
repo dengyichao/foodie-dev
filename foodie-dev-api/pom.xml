@@ -10,6 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>foodie-dev-api</artifactId>
+<!--    <packaging>jar</packaging>-->
+
+    <!-- 1. 打包war【1】(后期使用spring cloud会用jar打包，目前来说还是个应用项目采用war包发布，前端是一个独立的服务) -->
+    <!-- 2. 打包war【2】在主pom文件中，把内置的tomcat移除掉，包在 spring-boot-starter-web 中) -->
+    <!-- 3. 打包war【3】 在主pom文件中，添加servlet依赖 -->
+    <!-- 4. 打包war【4】 添加war包的启动类，在application.class同级目录下，创建WarStartApplication.class -->
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
@@ -18,13 +25,18 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!--&lt;!&ndash; 打包war【3】 添加servlet依赖 &ndash;&gt;
+       <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>-->
     </dependencies>
 
 </project>

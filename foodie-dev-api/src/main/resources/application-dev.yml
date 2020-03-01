@@ -1,0 +1,8 @@
+## 开发环境
+server:
+  port: 8088
+
+spring:
+  datasource:                                           # 数据源的相关配置
+    url: jdbc:mysql://192.168.80.128:3307/foodie-shop-dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    password: root
